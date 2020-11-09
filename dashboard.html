@@ -1,0 +1,311 @@
+<html>
+
+<head>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+
+    <link href="dashboard.css" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-analytics.js"></script>
+
+
+    <script>
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyBfwXXUlDb6Nc9-UE3S8V1WwwJsa6VsA20",
+            authDomain: "mghcheckin-13bb2.firebaseapp.com",
+            databaseURL: "https://mghcheckin-13bb2.firebaseio.com",
+            projectId: "mghcheckin-13bb2",
+            storageBucket: "mghcheckin-13bb2.appspot.com",
+            messagingSenderId: "974254263312",
+            appId: "1:974254263312:web:8f2c8a57ce12183125ce95",
+            measurementId: "G-ND4MDS3VGB"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+
+    </script>
+
+</head>
+
+<body>
+
+    <!-- NavBar-->
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Massachusetts General Hospital</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
+            data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="#">Sign out</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="sidebar-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <span data-feather="home"></span>
+                                Home <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="file"></span>
+                                Feature1
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="shopping-cart"></span>
+                                Feature2
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">MGH Dashboard</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                            <span data-feather="calendar"></span>
+                            This week
+                        </button>
+                    </div>
+                </div>
+
+                <!-- <div class="container" id="login-form">
+                    <form> -->
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1"
+                                placeholder="Password">
+                        </div>
+                        <button id="create-account" type="button" class="btn btn-primary">Create New Account</button>
+                    </form>
+
+                <!-- </div> -->
+
+                <!-- <div class="container" id="add-patient"> -->
+                    <div class="well">
+                        <button type='button' class='btn btn-default'>
+                            <span class='glyphicon glyphicon-remove'>
+                        </button>
+                        <form>
+                            <br>
+                            <h3>Add New Patient</h3>
+                            <div class="form-group">
+                                <label for="First-Name">Patient First Name</label>
+                                <input type="text" class="form-control" id="First-Name"
+                                    placeholder="Patient First Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="Last-Name">Patient Last Name</label>
+                                <input type="text" class="form-control" id="Last-Name" placeholder="Patient Last Name">
+                            </div>
+                            <form action="/action_page.php">
+                                <label for="Appointment">Date of Appointment:</label>
+                                <input type="date" id="Appointment" name="birthday">
+                            </form>
+
+                            <label for="appt-time">Select a time:</label>
+                            <input type="time" id="appt-time" name="appt">
+
+                            <div>
+                                <br>
+                                <button id="create-patient" type="button" class="btn btn-primary">Register
+                                    Patient</button>
+                            </div>
+                        </form>
+                    </div>
+
+                <!-- </div> -->
+
+                <!--canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
+
+                <!-- <div class="container" id="add-patient"> -->
+                    <br>
+                    <h2>Registered Appointments</h2>
+                    <div class="table-responsive">
+                        <table id="patienttable" class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Date of Appointment</th>
+                                    <th>Time of Appointment</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                <!-- </div> -->
+            </main>
+        </div>
+    </div>
+
+
+
+    <script>
+
+        //button listeners. Use Jquery (event, listener, call function)
+        $("#create-account").click(function () {
+            var email = $("#exampleInputEmail1").val();
+            var password = $("#exampleInputPassword1").val();
+            console.log("New User=" + email + "Password=" + password);
+            SignIn(email, password);
+        });
+
+        $("#create-patient").click(function () {
+
+            var appointmentinfo = {
+                firstname: $("#First-Name").val(),
+                lastname: $("#Last-Name").val(),
+                DoA: $("#Appointment").val(),
+                ToA: $("#appt-time").val()
+            }
+
+            writeUserData(appointmentinfo)
+
+        });
+
+
+        //Read Data from Firebase
+        var patientreference = firebase.database().ref("Appointments");
+        patientreference.on("value", function (snapshot) {
+            // $(showpatients).empty();
+            // var varhtml = "<h3>Here is all patients</h3>"
+
+            snapshot.forEach(function (childSnapshot) {
+                /*
+                var retrieveapt = childSnapshot.val();
+                varhtml += "<div><hr><ul>"
+                varhtml += "<li> First Name <span>" + retrieveapt.firstname +  "</span><li> " 
+                varhtml += "</ul></div>"
+                */
+
+                if ($('#patienttable tr').length > 0) {
+                    $("#patienttable tbody tr").remove();
+                    //document.getElementById($("#patienttable")).remove()
+                }
+
+                var retrieveapt = ""
+                snapshot.forEach(function (childSnapshot) {
+                    var aptinfo = childSnapshot.val();
+                    retrieveapt += "<tr>"
+                    retrieveapt += "<td>" + aptinfo.DoA + "</td>"
+                    retrieveapt += "<td>" + aptinfo.ToA + "</td>"
+                    retrieveapt += "<td>" + aptinfo.firstname + "</td>"
+                    retrieveapt += "<td>" + aptinfo.lastname + "</td>"
+                    retrieveapt += "<td>" + "<button type='button' onclick='productDelete(this);' id='" + aptinfo.firstname+"'> Delete </button>" + "</td>"
+                    retrieveapt += "</tr>"
+
+                });
+
+
+                $("#patienttable tbody").append(retrieveapt);
+
+
+
+
+                //$("#showpatients").html(varhtml);
+
+
+                /*
+                if ($('#patienttable tr').length == 0) {
+                    document.getElementById($("#Appointment")).remove()
+                }
+    
+                snapshot.forEach(function (childSnapshot) {
+                    var retrieveapt = childSnapshot.val();
+    
+                    $("#patienttable tbody").append("<tr>" +
+                        "<td>" + retrieveapt.DoA + "</td>" +
+                        "<td>" + retrieveapt.ToA + "</td>" +
+                        "<td>" + retrieveapt.firstname + "</td>" +
+                        "<td>" + retrieveapt.lastname + "</td>" +
+                        "</tr>");
+    
+                    console.log(childSnapshot.key)
+    */
+            });
+
+
+
+        })
+
+        function productDelete(ctl) {
+            var patientID= $(ctl).attr('id')
+            $(ctl).parents("tr").remove();
+            console.log(patientID)
+            firebase.database().ref('Appointments/'+ patientID).remove()
+        }
+
+        function SignIn(email, password) {
+            firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log(errorMessage)
+            });
+        }
+
+        function writeUserData(appointmentinfo) {
+            firebase.database().ref('Appointments/' + appointmentinfo.firstname).set(appointmentinfo);
+        }
+
+    </script>
+</body>
+
+</html>
