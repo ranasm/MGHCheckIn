@@ -65,6 +65,55 @@
 
 <body>
 
+
+    <!-- Modal -->
+    <div class="modal fade" id="editAppointment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <!-- <div class="container" id="add-patient"> -->
+                    <div class="well">
+                        <button type='button' class='btn btn-default'>
+                            <span class='glyphicon glyphicon-remove'>
+                        </button>
+
+                        <form>
+                            <h2>Edit Patient</h2>
+                            <div class="form-group">
+                                <label for="editFirst-Name">Patient First Name</label>
+                                <input type="text" class="form-control" id="editFirst-Name"
+                                    placeholder="Patient First Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="editLast-Name">Patient Last Name</label>
+                                <input type="text" class="form-control" id="editLast-Name"
+                                    placeholder="Patient Last Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="editInputEmail">Email address</label>
+                                <input type="email" class="form-control" id="editInputEmail" placeholder="Email">
+                            </div>
+
+                            <label for="edit-Appointment">Date of Appointment:</label>
+                            <input type="date" id="edit-Appointment" name="start">
+                            <div>
+                                <label for="editappt-time">Select a time:</label>
+                                <input type="time" id="editappt-time" name="appt">
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="editcreate-patient" type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- NavBar-->
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Massachusetts General Hospital</a>
@@ -120,7 +169,7 @@
                 </div>
 
                 <!-- <div class="container" id="login-form">-->
-                    <!-- <form> 
+                <!-- <form> 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
                             <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
@@ -136,63 +185,65 @@
                 <!-- </div> -->
 
                 <!-- <div class="container" id="add-patient"> -->
-                    <div class="well">
-                        <button type='button' class='btn btn-default'>
-                            <span class='glyphicon glyphicon-remove'>
-                        </button>
-                        <form>
-                            <h3>Add New Patient</h3>
-                            <div class="form-group">
-                                <label for="First-Name">Patient First Name</label>
-                                <input type="text" class="form-control" id="First-Name"
-                                    placeholder="Patient First Name">
-                            </div>
-                            <div class="form-group">
-                                <label for="Last-Name">Patient Last Name</label>
-                                <input type="text" class="form-control" id="Last-Name" placeholder="Patient Last Name">
-                            </div>
-                            <div class="form-group">
-                                <label for="InputEmail">Email address</label>
-                                <input type="email" class="form-control" id="InputEmail" placeholder="Email">
-                            </div>
-                            <form action="/action_page.php">
-                                <label for="Appointment">Date of Appointment:</label>
-                                <input type="date" id="Appointment" name="birthday">
-                            </form>
+                <div class="well">
+                    <button type='button' class='btn btn-default'>
+                        <span class='glyphicon glyphicon-remove'>
+                    </button>
 
-                            <label for="appt-time">Select a time:</label>
-                            <input type="time" id="appt-time" name="appt">
-
-                            <div>
-                                <br>
-                                <button id="create-patient" type="button" class="btn btn-primary">Register
-                                    Patient</button>
-                            </div>
+                    <form>
+                        <h3>Add New Patient</h3>
+                        <div class="form-group">
+                            <label for="First-Name">Patient First Name</label>
+                            <input type="text" class="form-control" id="First-Name" placeholder="Patient First Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="Last-Name">Patient Last Name</label>
+                            <input type="text" class="form-control" id="Last-Name" placeholder="Patient Last Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputEmail">Email address</label>
+                            <input type="email" class="form-control" id="InputEmail" placeholder="Email">
+                        </div>
+                        <form action="/action_page.php">
+                            <label for="Appointment">Date of Appointment:</label>
+                            <input type="date" id="Appointment" name="birthday">
                         </form>
-                    </div>
+
+                        <label for="appt-time">Select a time:</label>
+                        <input type="time" id="appt-time" name="appt">
+
+                        <div>
+                            <br>
+                            <button id="create-patient" type="button" class="btn btn-primary">Register
+                                Patient</button>
+                        </div>
+                    </form>
+                </div>
 
                 <!-- </div> -->
 
                 <!--canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas> -->
 
                 <!-- <div class="container" id="add-patient"> -->
-                    <br>
-                    <h3>Registered Appointments</h3>
-                    <div class="table-responsive">
-                        <table id="patienttable" class="table table-sm">
-                            <thead>
-                                <tr>
-                                    <th>Date of Appointment</th>
-                                    <th>Time of Appointment</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
+                <br>
+                <h3>Registered Appointments</h3>
+                <div class="table-responsive">
+                    <table id="patienttable" class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Date of Appointment</th>
+                                <th>Time of Appointment</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
                 <!-- </div> -->
             </main>
         </div>
@@ -218,6 +269,20 @@
                 DoA: $("#Appointment").val(),
                 Email: $("#InputEmail").val(),
                 ToA: $("#appt-time").val()
+            }
+
+            writeUserData(appointmentinfo)
+
+        });
+
+        $("#editcreate-patient").click(function () {
+
+            var appointmentinfo = {
+                firstname: $("#editFirst-Name").val(),
+                lastname: $("#editLast-Name").val(),
+                DoA: $("#edit-Appointment").val(),
+                Email: $("#editInputEmail").val(),
+                ToA: $("#editappt-time").val()
             }
 
             writeUserData(appointmentinfo)
@@ -252,8 +317,11 @@
                     retrieveapt += "<td>" + aptinfo.ToA + "</td>"
                     retrieveapt += "<td>" + aptinfo.firstname + "</td>"
                     retrieveapt += "<td>" + aptinfo.lastname + "</td>"
-                    retrieveapt += "<td>" + "<button type='button' onclick='productDelete(this);' id='" + aptinfo.firstname+"'> Delete </button>" + "</td>"
+                    retrieveapt += "<td>" + aptinfo.Email + "</td>"
+                    retrieveapt += "<td>" + "<button type='button' class='btn btn-primary' onclick='productEdit(this);' data-toggle='modal' data-target='#editAppointment'> Edit Details </button>" + "</td>"
+                    retrieveapt += "<td>" + "<button type='button' class='btn btn-danger' onclick='productDelete(this);' id='" + aptinfo.firstname + aptinfo.lastname + "'> Delete </button>" + "</td>"
                     retrieveapt += "</tr>"
+
 
                 });
 
@@ -289,11 +357,28 @@
 
         })
 
+
+        function productEdit(ctl) {
+            var row = $(ctl).parents("tr");
+            var cols = row.children("td");
+            console.log($(cols[0]).text())
+
+            $("#editFirst-Name").val($(cols[2]).text());
+            $("#editLast-Name").val($(cols[3]).text());
+            $("#editInputEmail").val($(cols[4]).text());
+            $("#edit-Appointment").val($(cols[0]).text());
+            $("#editappt-time").val($(cols[1]).text());
+            $("#start").val($(cols[0]).text());
+
+
+        }
+
+
         function productDelete(ctl) {
-            var patientID= $(ctl).attr('id')
+            var patientID = $(ctl).attr('id')
             $(ctl).parents("tr").remove();
             console.log(patientID)
-            firebase.database().ref('Appointments/'+ patientID).remove()
+            firebase.database().ref('Appointments/' + patientID).remove()
         }
 
         function SignIn(email, password) {
@@ -306,7 +391,7 @@
         }
 
         function writeUserData(appointmentinfo) {
-            firebase.database().ref('Appointments/' + appointmentinfo.firstname+ appointmentinfo.lastname).set(appointmentinfo);
+            firebase.database().ref('Appointments/' + appointmentinfo.firstname + appointmentinfo.lastname).set(appointmentinfo);
         }
 
     </script>
