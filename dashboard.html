@@ -101,6 +101,9 @@
                                 <label for="editappt-time">Select a time:</label>
                                 <input type="time" id="editappt-time" name="appt">
                             </div>
+                            <div>
+                                <input type="hidden" id="originaltime" class="form-control">
+                            </div>
 
                         </form>
                     </div>
@@ -231,7 +234,7 @@
                     <table id="patienttable" class="table table-sm">
                         <thead>
                             <tr>
-                                <th>Date of Appointment</th>
+                                <th >Date of Appointment</th>
                                 <th>Time of Appointment</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
@@ -268,7 +271,8 @@
                 lastname: $("#Last-Name").val(),
                 DoA: $("#Appointment").val(),
                 Email: $("#InputEmail").val(),
-                ToA: $("#appt-time").val()
+                ToA: $("#appt-time").val(),
+                RealToA: $("#appt-time").val()
             }
 
             writeUserData(appointmentinfo)
@@ -282,9 +286,9 @@
                 lastname: $("#editLast-Name").val(),
                 DoA: $("#edit-Appointment").val(),
                 Email: $("#editInputEmail").val(),
-                ToA: $("#editappt-time").val()
+                ToA: $("#originaltime").val() ,
+                RealToA: $("#editappt-time").val()
             }
-
             writeUserData(appointmentinfo)
 
         });
@@ -314,10 +318,11 @@
                     var aptinfo = childSnapshot.val();
                     retrieveapt += "<tr>"
                     retrieveapt += "<td>" + aptinfo.DoA + "</td>"
-                    retrieveapt += "<td>" + aptinfo.ToA + "</td>"
+                    retrieveapt += "<td>" + aptinfo.RealToA + "</td>"
                     retrieveapt += "<td>" + aptinfo.firstname + "</td>"
                     retrieveapt += "<td>" + aptinfo.lastname + "</td>"
                     retrieveapt += "<td>" + aptinfo.Email + "</td>"
+                    retrieveapt += "<td style='display:none;'>" + aptinfo.ToA + "</td>"
                     retrieveapt += "<td>" + "<button type='button' class='btn btn-primary' onclick='productEdit(this);' data-toggle='modal' data-target='#editAppointment'> Edit Details </button>" + "</td>"
                     retrieveapt += "<td>" + "<button type='button' class='btn btn-danger' onclick='productDelete(this);' id='" + aptinfo.firstname + aptinfo.lastname + "'> Delete </button>" + "</td>"
                     retrieveapt += "</tr>"
@@ -361,14 +366,14 @@
         function productEdit(ctl) {
             var row = $(ctl).parents("tr");
             var cols = row.children("td");
-            console.log($(cols[0]).text())
+            console.log($(cols[5]).text())
 
+            $("#edit-Appointment").val($(cols[0]).text());
+            $("#editappt-time").val($(cols[1]).text());
             $("#editFirst-Name").val($(cols[2]).text());
             $("#editLast-Name").val($(cols[3]).text());
             $("#editInputEmail").val($(cols[4]).text());
-            $("#edit-Appointment").val($(cols[0]).text());
-            $("#editappt-time").val($(cols[1]).text());
-            $("#start").val($(cols[0]).text());
+            $("#originaltime").val($(cols[5]).text());
 
 
         }
