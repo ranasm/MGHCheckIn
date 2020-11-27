@@ -211,7 +211,9 @@
                             <label for="Appointment">Date of Appointment:</label>
                             <input type="date" id="Appointment" name="birthday">
                         </form>
-
+                        <div>
+                            <input type="hidden" id="CheckIn" class="form-control">
+                        </div>
                         <label for="appt-time">Select a time:</label>
                         <input type="time" id="appt-time" name="appt">
 
@@ -234,11 +236,12 @@
                     <table id="patienttable" class="table table-sm">
                         <thead>
                             <tr>
-                                <th >Date of Appointment</th>
+                                <th>Date of Appointment</th>
                                 <th>Time of Appointment</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>Email</th>
+                                <th>Check In Status</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -272,7 +275,8 @@
                 DoA: $("#Appointment").val(),
                 Email: $("#InputEmail").val(),
                 ToA: $("#appt-time").val(),
-                RealToA: $("#appt-time").val()
+                RealToA: $("#appt-time").val(),
+                CheckInStatus: $("#CheckIn").val()
             }
 
             writeUserData(appointmentinfo)
@@ -286,7 +290,7 @@
                 lastname: $("#editLast-Name").val(),
                 DoA: $("#edit-Appointment").val(),
                 Email: $("#editInputEmail").val(),
-                ToA: $("#originaltime").val() ,
+                ToA: $("#originaltime").val(),
                 RealToA: $("#editappt-time").val()
             }
             writeUserData(appointmentinfo)
@@ -323,6 +327,7 @@
                     retrieveapt += "<td>" + aptinfo.lastname + "</td>"
                     retrieveapt += "<td>" + aptinfo.Email + "</td>"
                     retrieveapt += "<td style='display:none;'>" + aptinfo.ToA + "</td>"
+                    retrieveapt += "<td>" + aptinfo.CheckInStatus + "</td>"
                     retrieveapt += "<td>" + "<button type='button' class='btn btn-primary' onclick='productEdit(this);' data-toggle='modal' data-target='#editAppointment'> Edit Details </button>" + "</td>"
                     retrieveapt += "<td>" + "<button type='button' class='btn btn-danger' onclick='productDelete(this);' id='" + aptinfo.firstname + aptinfo.lastname + "'> Delete </button>" + "</td>"
                     retrieveapt += "</tr>"
